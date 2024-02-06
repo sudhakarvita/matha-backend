@@ -1,4 +1,4 @@
-import framesModel from "../common/frames-model.js";
+import framesModel from "../../common/frames-model.js";
 
 export const createFrames = async (req,res)=>{
     try{

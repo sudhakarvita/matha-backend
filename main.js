@@ -1,9 +1,9 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import adminRoutings from "./admin/index.js"
+import adminRoutings from "./admin/login/index.js"
 import customerRoutings from "./customer/index.js"
-import framesRoutings from "./frames/index.js"
+import framesRoutings from "./admin/frames/index.js"
 
 
 const app = express()
