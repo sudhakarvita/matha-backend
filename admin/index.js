@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createAdmin,
          adminLogin
- } from "./controller.js";
+ } from "../admin/controller.js";
 
 const router = new Router()
 

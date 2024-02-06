@@ -2,7 +2,7 @@ import { Router } from "express";
 import {
     customerRegister,
     customerLogin
-}from "./controller.js"
+}from "../customer/controller.js"
 
 const router = new Router()
 
