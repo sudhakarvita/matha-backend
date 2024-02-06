@@ -19,5 +19,7 @@ export const adminLogin = async (req,res)=>{
     }catch(error){
         res.status(500).json({error:"admin login failed"})
     }
-}
+};
+
+
 

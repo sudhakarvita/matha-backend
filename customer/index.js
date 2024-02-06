@@ -8,7 +8,7 @@ const router = new Router()
 
 router.post( '/', customerRegister);
 
-router.post( '/login', customerLogin)
+router.post( '/login', customerLogin);
 
 
 
