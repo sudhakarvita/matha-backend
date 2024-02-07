@@ -1,4 +1,5 @@
 import { Router } from "express";
+import verifyToken from "../../jwt/verifyToken.js";
 
 import{ createFrames,
         getAllframes,
@@ -9,14 +10,14 @@ import{ createFrames,
 
 const router = new Router();
 
-router.post('/', createFrames);
+router.post('/', verifyToken, createFrames);
 
-router.get('/getframes', getAllframes);
+router.get('/getframes', verifyToken, getAllframes);
 
-router.get('/getframe/:id', getframesbyId);
+router.get('/getframe/:id', verifyToken, getframesbyId);
 
-router.put( '/upadate/:id', updateFramebyId);
+router.put( '/upadate/:id', verifyToken, updateFramebyId);
 
-router.delete( '/delete/:id', deleteFramebyId)
+router.delete( '/delete/:id', verifyToken, deleteFramebyId)
 
 export default router

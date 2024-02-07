@@ -1,4 +1,5 @@
 import adminModel from "../../common/admin-model.js";
+import jwt  from "jsonwebtoken";
 
 export const createAdmin = async (req,res)=>{
     try{
@@ -6,7 +7,7 @@ export const createAdmin = async (req,res)=>{
         res.status(200).json(newAdmin)
     }catch(error){
         res.status(404).json({error:"failed to create admin"})
-    }
+    };
 };
 
 export const adminLogin = async (req,res)=>{
@@ -15,10 +16,12 @@ export const adminLogin = async (req,res)=>{
         if(!Admin){
             res.status(404).json("admin not found")
         }
-        res.status(200).json(Admin)
+        const secretKey = 'my-secretKey';
+        const token = jwt.sign({ "password":req.body.password, "mobileno":req.body.mobileno},secretKey,{ expiresIn: '2h' })
+        res.status(201).json({Admin,token})
     }catch(error){
         res.status(500).json({error:"admin login failed"})
-    }
+    };
 };
 
 
