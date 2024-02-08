@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
+import cors from "cors"
 import adminRoutings from "./admin/login/index.js"
 import customerRoutings from "./customer/login/index.js"
 import framesRoutings from "./admin/frames/index.js"
@@ -11,11 +12,16 @@ import imgRoutings from "./customer/photos-upload/index.js"
 const app = express()
 dotenv.config()
 app.use(express.json());
+app.use(cors())
 
-app.use('/admin', adminRoutings);
-app.use('/customer', customerRoutings);
-app.use( '/frames', framesRoutings);
-app.use( '/photo', imgRoutings);
+let corsOptions = {
+    origin: [ 'http://localhost:5000', ]
+};
+
+app.use('/admin', cors(corsOptions), adminRoutings);
+app.use('/customer', cors(corsOptions), customerRoutings);
+app.use( '/frames', cors(corsOptions), framesRoutings);
+app.use( '/photo', cors(corsOptions), imgRoutings);
 app.use(verifyToken);
 
 mongoose.connect(process.env.DB_URL)
