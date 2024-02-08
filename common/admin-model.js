@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
 const adminSchema = new mongoose.Schema({
-    password:{
+    username:{
         type:String,
         require:true
     },
-    mobileno:{
+    password:{
         type:Number,
         require:true
     }
