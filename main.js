@@ -6,7 +6,8 @@ import adminRoutings from "./admin/login/index.js"
 import customerRoutings from "./customer/login/index.js"
 import framesRoutings from "./admin/frames/index.js"
 import verifyToken from "./jwt/verifyToken.js"
-import imgRoutings from "./customer/photos-upload/index.js"
+import uploadphotoRoutings from "./customer/photos-upload/index.js"
+import cartRoutings from "./customer/cart/index.js"
 
 
 const app = express()
@@ -21,7 +22,8 @@ let corsOptions = {
 app.use('/admin', cors(corsOptions), adminRoutings);
 app.use('/customer', cors(corsOptions), customerRoutings);
 app.use( '/frames', cors(corsOptions), framesRoutings);
-app.use( '/photo', cors(corsOptions), imgRoutings);
+app.use( '/photo', cors(corsOptions), uploadphotoRoutings);
+app.use( '/cart', cors(corsOptions), cartRoutings);
 app.use(verifyToken);
 
 mongoose.connect(process.env.DB_URL)
