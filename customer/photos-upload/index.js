@@ -2,7 +2,7 @@ import { Router } from "express";
 import{ uploadImage,
         fileNum
     
-} from "./controller.js";
+} from "../../customer/photos-upload/controller.js";
 import verifyToken from "../../jwt/verifyToken.js";
 
 
