@@ -12,12 +12,12 @@ export const customerRegister = async (req,res)=>{
 
 export const customerLogin = async (req,res)=>{
     try{
-        const Customer = await customerModel.findOne({"mobileno":req.body.mobileno})
+        const Customer = await customerModel.findOne({"mobileno":req.body.mobileno, "password":req.body.password})
         if(!Customer){
             res.status(404).json("Customer not found")
         }
         const secretKey = 'my-secretKey';
-        const token = jwt.sign({ "mobileno":req.body.mobileno},secretKey,{ expiresIn: '1h' })
+        const token = jwt.sign({ "mobileno":req.body.mobileno, "password":req.body.password},secretKey,{ expiresIn: '1h' })
         res.status(200).json({Customer,token})
     }catch(error){
         res.status(500).json({error:"Customer login failed"})
