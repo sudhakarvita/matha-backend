@@ -12,7 +12,7 @@ export const customerRegister = async (req,res)=>{
 
 export const customerLogin = async (req,res)=>{
     try{
-        const Customer = await customerModel.findOne(req.body)
+        const Customer = await customerModel.findOne({"mobileno":req.body.mobileno})
         if(!Customer){
             res.status(404).json("Customer not found")
         }

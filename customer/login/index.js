@@ -24,6 +24,4 @@ router.put( '/update/:id', verifyToken, updateCustomerbyId);
 router.delete( '/delete/:id', verifyToken, deleteCustomerbyId);
 
 
-
-
 export default router
