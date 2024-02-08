@@ -9,3 +9,21 @@ export const addCart = async (req,res)=>{
     }
 };
 
+export const getCartItems = async (req,res)=>{
+    try{
+        const allCartItems = await cartModel.find()
+        res.status(200).json(allCartItems)
+    }catch(error){
+        res.status(404).json({error:"no cart items"})
+    }
+};
+
+export const getCartbyId = async (req,res)=>{
+    try{
+        const CartItem = await cartModel.findById(req.params.id)
+        res.status(200).json(CartItem)
+    }catch(error){
+        res.status(404).json({error:"no cart items found"})
+    }
+};
+
