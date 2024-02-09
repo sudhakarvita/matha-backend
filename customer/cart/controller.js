@@ -27,3 +27,22 @@ export const getCartbyId = async (req,res)=>{
     }
 };
 
+export const updateCartItems = async (req,res)=>{
+    try{
+        const updateCart = await cartModel.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        res.status(200).json(updateCart)
+    }catch(error){
+        res.status(500).json({error:"cart update failed"})
+    }
+};
+
+export const deleteCartItems = async (req,res)=>{
+    try{
+        const deleteCart = await cartModel.findByIdAndDelete(req.params.id)
+        res.status(200).json(deleteCart)
+    }catch(error){
+        res.status(500).json({error:"cart delete failed"})
+    }
+};
+
+

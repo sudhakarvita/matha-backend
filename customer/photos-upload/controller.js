@@ -27,3 +27,21 @@ const storage = multer.diskStorage({
         return res.status(500).json({ error: 'Internal Server Error' });
       }
     };
+
+    export const viewImages = async (req,res)=>{
+      try{
+        const Images = await photoModel.find()
+        res.status(200).json(Images)
+      }catch(error){
+        res.status(404).json({error:"images not found"})
+      }
+    };
+
+    export const viewImagesbyId = async (req,res)=>{
+      try{
+        const Image = await photoModel.findById(req.params.id)
+        res.status(200).json(Image)
+      }catch(error){
+        res.status(404).json({error:"image not found"})
+      }
+    };
