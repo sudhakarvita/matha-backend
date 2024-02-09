@@ -1,22 +1,30 @@
 import { Router } from "express";
-import { addCart,
+import {
          getCartItems,
          getCartbyId,
          updateCartItems,
-         deleteCartItems
+         deleteCartItems,
+         fileNum,
+         addCartItems,
+         addCheckout,
+         
 } from "../../customer/cart/controller.js"
 import verifyToken from "../../jwt/verifyToken.js";
 
 const router = new Router()
 
-router.post('/', verifyToken, addCart);
+router.post('/', verifyToken, fileNum, addCartItems);
 
 router.get('/getcart', verifyToken, getCartItems);
 
 router.get('/getcartBy/:id', verifyToken, getCartbyId);
 
-router.put( '/updatecart/:id', verifyToken, updateCartItems)
+router.put( '/updatecart/:id', verifyToken, updateCartItems);
 
-router.delete( '/deletecart/:id', verifyToken, deleteCartItems)
+router.delete( '/deletecart/:id', verifyToken, deleteCartItems);
+
+//checkout api's
+
+router.post('/addcheckout', verifyToken, addCheckout)
 
 export default router

@@ -1,13 +1,38 @@
 import cartModel from "../../common/cart-model.js";
+import checkoutModel from "../../common/checkout-model.js";
+import multer from "multer";
 
-export const addCart = async (req,res)=>{
-    try{
-        const Cart = await cartModel.create(req.body)
-        res.status(200).json(Cart)
-    }catch(error){
-        res.status(500).json({error:"add to cart failed"})
-    }
-};
+
+const storage = multer.diskStorage({
+    destination: "uploads/",
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    },
+  });
+  
+  const upload = multer({ storage });
+    
+  export const fileNum =  upload.single('file')
+  
+    export const addCartItems =  async (req, res) => {
+      try {
+        if (!req.file) {
+          return res.status(400).json({ error: 'No files uploaded' });
+        }
+        const data = {
+            title:req.body.title,
+            size:req.body.size,
+            date:req.body.date,
+            price:req.body.price,            
+            photo:req.file.filename
+        };
+        const image = await cartModel.create(data);
+        return res.status(200).json(image);
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+    };
 
 export const getCartItems = async (req,res)=>{
     try{
@@ -44,5 +69,16 @@ export const deleteCartItems = async (req,res)=>{
         res.status(500).json({error:"cart delete failed"})
     }
 };
+
+//checkout api's
+
+export const addCheckout = async (req,res)=>{
+    try{
+        const newCheckout = await checkoutModel.create(req.body)
+        res.status(200).json(newCheckout)
+    }catch(error){
+        res.status(500).json({error:"failed to create checkout"})
+    }
+}
 
 
