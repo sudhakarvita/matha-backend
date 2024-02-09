@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
           return res.status(400).json({ error: 'No files uploaded' });
         }
         const data = {
-            Imagepath:req.file.originalname
+            Imagepath:req.file.filename
         };
         const image = await photoModel.create(data);
         return res.status(200).json(image);
