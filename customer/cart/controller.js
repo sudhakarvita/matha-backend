@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
           return res.status(400).json({ error: 'No files uploaded' });
         }
         const data = {
-            title:req.body.title,
+
             size:req.body.size,
             date:req.body.date,
             price:req.body.price,            

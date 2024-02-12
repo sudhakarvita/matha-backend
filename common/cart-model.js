@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        
-    },
     size:{
         type:String,
         require:true
@@ -14,10 +10,6 @@ const cartSchema = new mongoose.Schema({
         require:true
     },
     photo:{
-        type:String,
-        require:true
-    },
-    thickness:{
         type:String,
         require:true
     },
