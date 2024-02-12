@@ -7,6 +7,10 @@ import {
          fileNum,
          addCartItems,
          addCheckout,
+         viewCheckout,
+         viewCheckoutbyId,
+         updateCheckout,
+         deleteCheckout,
          
 } from "../../customer/cart/controller.js"
 import verifyToken from "../../jwt/verifyToken.js";
@@ -23,8 +27,17 @@ router.put( '/updatecart/:id', verifyToken, updateCartItems);
 
 router.delete( '/deletecart/:id', verifyToken, deleteCartItems);
 
+
 //checkout api's
 
-router.post('/addcheckout', verifyToken, addCheckout)
+router.post('/addcheckout', verifyToken, addCheckout);
+
+router.get('/viewcheckout', verifyToken, viewCheckout);
+
+router.get('/viewCheckoutbyId/:id', verifyToken, viewCheckoutbyId);
+
+router.put('/updateCheckout/:id', verifyToken, updateCheckout);
+
+router.delete('/deleteCheckout/:id', verifyToken, deleteCheckout)
 
 export default router

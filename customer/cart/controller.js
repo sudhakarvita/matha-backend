@@ -79,6 +79,42 @@ export const addCheckout = async (req,res)=>{
     }catch(error){
         res.status(500).json({error:"failed to create checkout"})
     }
-}
+};
+
+export const viewCheckout = async (req,res)=>{
+    try{
+        const checkout = await checkoutModel.find()
+        res.status(200).json(checkout)
+    }catch(error){
+        res.status(404).json({error:"checkout details not found"})
+    }
+};
+
+export const viewCheckoutbyId = async (req,res)=>{
+    try{
+        const checkout = await checkoutModel.findById(req.params.id)
+        res.status(200).json(checkout)
+    }catch(error){
+        res.status(404).json({error:"checkout details not found"})
+    }
+};
+
+export const updateCheckout = async (req,res)=>{
+    try{
+        const updatecheckout = await checkoutModel.findByIdAndUpdate(req.params.id, req.body, {new:true})
+        res.status(200).json(updatecheckout)
+    }catch(error){
+        res.status(500).json({error:"failed to update checkout"})
+    }
+};
+
+export const deleteCheckout = async (req,res)=>{
+    try{
+        const deletecheckout = await checkoutModel.findByIdAndDelete(req.params.id)
+        res.status(200).json(deletecheckout)
+    }catch(error){
+        res.status(500).json({error:"failed to delete checkout"})
+    }
+};
 
 
