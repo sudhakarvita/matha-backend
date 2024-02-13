@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema({
+    cartId:{
+        type:String,
+        require:true
+    },
+    thickness:{
+        type:String,
+        require:true
+    },
     size:{
         type:String,
         require:true
