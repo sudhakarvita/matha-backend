@@ -2,16 +2,13 @@ import mongoose from "mongoose";
 
 const framesSchema = new mongoose.Schema({
     size:{
-        type:String,
-        require:true
+        type:String,    
     },
     price:{
-        type:String,
-        require:true
+        type:String, 
     },
     thickness:{
-        type:String,
-        require:true
+        type:String,  
     },
 },
     {timestamps:true}

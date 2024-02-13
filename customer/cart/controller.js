@@ -46,7 +46,7 @@ export const getCartItems = async (req,res)=>{
 
 export const getCartbyId = async (req,res)=>{
     try{
-        const CartItem = await cartModel.findById(req.params.id)
+        const CartItem = await cartModel.find({"cartId":req.params.id})
         res.status(200).json(CartItem)
     }catch(error){
         res.status(404).json({error:"no cart items found"})

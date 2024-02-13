@@ -8,6 +8,9 @@ import framesRoutings from "./admin/frames/index.js"
 import verifyToken from "./jwt/verifyToken.js"
 import uploadphotoRoutings from "./customer/photos-upload/index.js"
 import cartRoutings from "./customer/cart/index.js"
+import sizesRoutings from "./admin/Frames size/index.js"
+import thicknessRoutings from "./admin/Frames thickness/index.js"
+import priceRoutings from "./admin/Frames Price/index.js"
 
 
 const app = express()
@@ -24,6 +27,9 @@ app.use('/customer', cors(corsOptions), customerRoutings);
 app.use( '/frames', cors(corsOptions), framesRoutings);
 app.use( '/photo', cors(corsOptions), uploadphotoRoutings);
 app.use( '/cart', cors(corsOptions), cartRoutings);
+app.use( '/size', cors(corsOptions), sizesRoutings);
+app.use( '/thickness', cors(corsOptions), thicknessRoutings);
+app.use( '/price', cors(corsOptions), priceRoutings);
 app.use(verifyToken);
 
 mongoose.connect(process.env.DB_URL)
