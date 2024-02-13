@@ -4,7 +4,6 @@ import mongoose from "mongoose"
 import cors from "cors"
 import adminRoutings from "./admin/login/index.js"
 import customerRoutings from "./customer/login/index.js"
-import framesRoutings from "./admin/frames/index.js"
 import verifyToken from "./jwt/verifyToken.js"
 import uploadphotoRoutings from "./customer/photos-upload/index.js"
 import cartRoutings from "./customer/cart/index.js"
@@ -24,7 +23,6 @@ let corsOptions = {
 
 app.use('/admin', cors(corsOptions), adminRoutings);
 app.use('/customer', cors(corsOptions), customerRoutings);
-app.use( '/frames', cors(corsOptions), framesRoutings);
 app.use( '/photo', cors(corsOptions), uploadphotoRoutings);
 app.use( '/cart', cors(corsOptions), cartRoutings);
 app.use( '/size', cors(corsOptions), sizesRoutings);
