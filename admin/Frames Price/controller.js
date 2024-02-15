@@ -11,7 +11,7 @@ export const addPrice = async (req,res)=>{
 
 export const getAllprices = async (req,res)=>{
     try{
-        const allPrices = await priceModel.find()
+        const allPrices = await priceModel.find({"sizeId":req.body.sizeId, "thicknessId":req.body.thicknessId})
         res.status(200).json(allPrices)
     }catch(error){
         res.status(500).json({ error:"not found"})
