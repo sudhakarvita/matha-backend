@@ -17,7 +17,7 @@ export const adminLogin = async (req,res)=>{
             res.status(404).json("admin not found")
         }
         const secretKey = 'my-secretKey';
-        const token = jwt.sign({ "password":req.body.password, "mobileno":req.body.mobileno},secretKey,{ expiresIn: '8h' })
+        const token = jwt.sign({ "username":req.body.username, "password":req.body.password},secretKey,{ expiresIn: '12h' })
         res.status(201).json({Admin,token})
     }catch(error){
         res.status(500).json({error:"admin login failed"})
