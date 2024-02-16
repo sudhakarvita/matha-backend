@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const pricesSchema = new mongoose.Schema({
     sizeId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         require:true    
     },
     thicknessId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         require:true    
     },
     price:{

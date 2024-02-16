@@ -18,6 +18,34 @@ export const getAllprices = async (req,res)=>{
     }
 };
 
+export const getFrames = async (req,res)=>{
+    try{
+        const Frames = await priceModel.aggregate([
+            {
+                $lookup: {
+                    from: 'sizes',
+                    localField: 'sizeId',
+                    foreignField: '_id',
+                    as: 'sizes_details'
+                },
+                
+            },
+            {
+                $lookup: {
+                    from: 'thicknes',
+                    localField: 'thicknessId',
+                    foreignField: '_id',
+                    as: 'thicknes_details'
+                },
+                
+            }
+        ])
+        res.status(200).json(Frames)
+    }catch(error){
+        res.status(500).json({ error:"not found"})
+    }
+};
+
 export const getPricebyId = async (req,res)=>{
     try{
         const price = await priceModel.findById(req.params.id)

@@ -5,7 +5,8 @@ import{ addPrice,
         getAllprices,
         getPricebyId,
         updatePricebyId,
-        deletePricebyId
+        deletePricebyId,
+        getFrames
               
  } from "../Frames Price/controller.js"
 
@@ -13,7 +14,9 @@ const router = new Router();
 
 router.post('/addprice', verifyToken, addPrice);
 
-router.get('/getprices', verifyToken, getAllprices);
+router.post('/getprices', verifyToken, getAllprices);
+
+router.get('/getframes', verifyToken, getFrames);
 
 router.get('/getPriceby/:id', verifyToken, getPricebyId);
 
