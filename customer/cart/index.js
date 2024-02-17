@@ -11,6 +11,7 @@ import {
          viewCheckoutbyId,
          updateCheckout,
          deleteCheckout,
+         getCartbyid
          
 } from "../../customer/cart/controller.js"
 import verifyToken from "../../jwt/verifyToken.js";
@@ -22,6 +23,8 @@ router.post('/', verifyToken, fileNum, addCartItems);
 router.get('/getcart', verifyToken, getCartItems);
 
 router.get('/getcartBy/:id', verifyToken, getCartbyId);
+
+router.get('/getcartByid/:id', verifyToken,  getCartbyid);
 
 router.put( '/updatecart/:id', verifyToken, updateCartItems);
 

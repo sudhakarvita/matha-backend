@@ -53,6 +53,47 @@ export const getCartbyId = async (req,res)=>{
     }
 };
 
+export const getCartbyid = async (req,res)=>{
+    try{
+        const Frames = await cartModel.aggregate([
+            {
+                $match: { "cartId":req.params.id }
+            },
+
+            {
+                $lookup: {
+                    from: 'carts',
+                    localField: 'cartId',
+                    foreignField: '_id',
+                    as: 'cart_details'
+                },
+                
+            },
+            {
+                $lookup: {
+                    from: 'sizes',
+                    localField: 'sizeId',
+                    foreignField: '_id',
+                    as: 'sizes_details'
+                },
+                
+            },
+            {
+                $lookup: {
+                    from: 'thicknes',
+                    localField: 'thicknessId',
+                    foreignField: '_id',
+                    as: 'thicknes_details'
+                },
+                
+            }
+        ])
+        res.status(200).json(Frames)
+    }catch(error){
+        res.status(500).json({ error:"not found"})
+    }
+};
+
 export const updateCartItems = async (req,res)=>{
     try{
         const updateCart = await cartModel.findByIdAndUpdate(req.params.id, req.body, {new:true})

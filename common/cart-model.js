@@ -2,15 +2,15 @@ import mongoose from "mongoose";
 
 const cartSchema = new mongoose.Schema({
     cartId:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         require:true
     },
-    thickness:{
-        type:String,
+    thicknessId:{
+        type:mongoose.Schema.Types.ObjectId,
         require:true
     },
-    size:{
-        type:String,
+    sizeId:{
+        type:mongoose.Schema.Types.ObjectId,
         require:true
     },
     quantity:{
