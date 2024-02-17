@@ -14,7 +14,7 @@ const cartSchema = new mongoose.Schema({
         require:true
     },
     quantity:{
-        type:String,
+        type:Number,
         require:true
     },
     photo:{
@@ -22,7 +22,7 @@ const cartSchema = new mongoose.Schema({
         require:true
     },
     price:{
-        type:String,
+        type:Number,
         require:true
     },
 },
