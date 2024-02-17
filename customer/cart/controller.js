@@ -21,9 +21,9 @@ const storage = multer.diskStorage({
         }
         const data = {
             cartId:req.body.cartId,
-            thickness:req.body.thickness,
-            size:req.body.size,
-            date:req.body.date,
+            thicknessId:req.body.thicknessId,
+            sizeId:req.body.sizeId,
+            quantity:req.body.quantity,
             price:req.body.price,            
             photo:req.file.filename
         };
@@ -37,10 +37,29 @@ const storage = multer.diskStorage({
 
 export const getCartItems = async (req,res)=>{
     try{
-        const allCartItems = await cartModel.find()
-        res.status(200).json(allCartItems)
+        const Frames = await cartModel.aggregate([
+            {
+                $lookup: {
+                    from: 'sizes',
+                    localField: 'sizeId',
+                    foreignField: '_id',
+                    as: 'sizes_details'
+                },
+                
+            },
+            {
+                $lookup: {
+                    from: 'thicknes',
+                    localField: 'thicknessId',
+                    foreignField: '_id',
+                    as: 'thicknes_details'
+                },
+                
+            }
+        ])
+        res.status(200).json(Frames)
     }catch(error){
-        res.status(404).json({error:"no cart items"})
+        res.status(500).json({ error:"not found"})
     }
 };
 
@@ -52,6 +71,8 @@ export const getCartbyId = async (req,res)=>{
         res.status(404).json({error:"no cart items found"})
     }
 };
+
+
 
 export const updateCartItems = async (req,res)=>{
     try{
