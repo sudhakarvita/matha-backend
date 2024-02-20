@@ -2,11 +2,12 @@ import { Router } from "express";
 import verifyToken from "../../jwt/verifyToken.js";
 
 import{ addPrice,
-        getAllprices,
+        getAllpricesWithIds,
         getPricebyId,
         updatePricebyId,
         deletePricebyId,
-        getFrames
+        getFrames,
+        getAllprices
               
  } from "../Frames Price/controller.js"
 
@@ -14,9 +15,11 @@ const router = new Router();
 
 router.post('/addprice', verifyToken, addPrice);
 
-router.post('/getprices', verifyToken, getAllprices);
+router.post('/getpricesWithid', verifyToken, getAllpricesWithIds);
 
 router.get('/getframes', verifyToken, getFrames);
+
+router.get('/getPrices', verifyToken, getAllprices);
 
 router.get('/getPriceby/:id', verifyToken, getPricebyId);
 
