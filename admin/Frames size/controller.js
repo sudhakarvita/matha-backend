@@ -2,7 +2,8 @@ import sizesModel from "../../common/size-model.js";
 
 export const addSizes = async (req,res)=>{
     try{
-        const Sizes = await sizesModel.create(req.body)
+        const Sizes = await sizesModel(req.body)
+        Sizes.save()
         res.status(200).json(Sizes)
     }catch(error){
         res.status(500).json({ error:"failed to create sizes"})

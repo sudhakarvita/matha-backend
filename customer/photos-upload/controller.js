@@ -20,8 +20,9 @@ const storage = multer.diskStorage({
         const data = {
             Imagepath:req.file.filename
         };
-        const image = await photoModel.create(data);
-        return res.status(200).json(image);
+        const image = await photoModel(data)
+        image.save()
+        return res.status(200).json(image)
       } catch (err) {
         console.error(err);
         return res.status(500).json({ error: 'Internal Server Error' });

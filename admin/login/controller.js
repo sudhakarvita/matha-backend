@@ -3,7 +3,8 @@ import jwt  from "jsonwebtoken";
 
 export const createAdmin = async (req,res)=>{
     try{
-        const newAdmin = await adminModel.create(req.body)
+        const newAdmin = await adminModel(req.body)
+        newAdmin.save()
         res.status(200).json(newAdmin)
     }catch(error){
         res.status(404).json({error:"failed to create admin"})

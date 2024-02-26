@@ -27,7 +27,8 @@ const storage = multer.diskStorage({
             price:req.body.price,            
             photo:req.file.filename
         };
-        const image = await cartModel.create(data);
+        const image = await cartModel(data)
+        image.save()
         return res.status(200).json(image);
       } catch (err) {
         console.error(err);
@@ -96,7 +97,8 @@ export const deleteCartItems = async (req,res)=>{
 
 export const addCheckout = async (req,res)=>{
     try{
-        const newCheckout = await checkoutModel.create(req.body)
+        const newCheckout = await checkoutModel(req.body)
+        newCheckout.save()
         res.status(200).json(newCheckout)
     }catch(error){
         res.status(500).json({error:"failed to create checkout"})

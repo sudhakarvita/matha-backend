@@ -2,7 +2,8 @@ import thicknessModel from "../../common/thickness-model.js";
 
 export const addThickness = async (req,res)=>{
     try{
-        const thickness = await thicknessModel.create(req.body)
+        const thickness = await thicknessModel(req.body)
+        thickness.save()
         res.status(200).json(thickness)
     }catch(error){
         res.status(500).json({ error:"failed to create thickness"})

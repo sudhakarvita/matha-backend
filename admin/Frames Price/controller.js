@@ -2,7 +2,8 @@ import priceModel from "../../common/price-model.js";
 
 export const addPrice = async (req,res)=>{
     try{
-        const newPrice = await priceModel.create(req.body)
+        const newPrice = await priceModel(req.body)
+        newPrice.save()
         res.status(200).json(newPrice)
     }catch(error){
         res.status(500).json({ error:"failed to add price"})
