@@ -29,6 +29,10 @@ const checkoutSchema = new mongoose.Schema({
         type:String,
         require:true
     },
+    village:{
+        type:String,
+        require:true
+    },
     pincode:{
         type:Number,
         require:true
