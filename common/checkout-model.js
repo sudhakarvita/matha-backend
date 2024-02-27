@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const checkoutSchema = new mongoose.Schema({
+    addressId:{
+        type:mongoose.Schema.Types.ObjectId,
+        require:true
+    },
     fullname:{
         type:String,
         require:true
@@ -10,6 +14,10 @@ const checkoutSchema = new mongoose.Schema({
         require:true
     },
     mobileno:{
+        type:Number,
+        require:true
+    },
+    altmobileno:{
         type:Number,
         require:true
     },

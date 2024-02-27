@@ -116,7 +116,7 @@ export const viewCheckout = async (req,res)=>{
 
 export const viewCheckoutbyId = async (req,res)=>{
     try{
-        const checkout = await checkoutModel.findById(req.params.id)
+        const checkout = await checkoutModel.find({"addressId":req.params.id})
         res.status(200).json(checkout)
     }catch(error){
         res.status(404).json({error:"checkout details not found"})
