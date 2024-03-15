@@ -15,7 +15,7 @@ dotenv.config()
 app.use(express.json());
 app.use(cors())
 let corsOptions = {
-    origin: ['http://78.142.47.247:8000',]
+    origin: ['http://78.142.47.247:${process.env.PORT}',]
 };
 app.use('/admin', cors(corsOptions), adminRoutings);
 app.use('/customer', cors(corsOptions), customerRoutings);
